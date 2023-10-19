@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Observation extends Model
 {
@@ -14,13 +15,14 @@ class Observation extends Model
         'mesage',
     ];
 
-    public function Category():BelongsTo{
-        return $this->belongsTo(Observation::class,'category');
+    public function category():BelongsTo{
+        return $this->BelongsTo(Observation::class,'category');
     }
-    public function User():BelongsTo{
-        return $this->belongsTo(Observation::class,'owner');
+    public function user():BelongsTo{
+        return $this->BelongsTo(Observation::class,'owner');
     }
-    public function Computer():BelongsTo{
+
+    public function computer():BelongsTo{
         return $this->belongsTo(Observation::class,'computer');
     }
 

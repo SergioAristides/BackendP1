@@ -14,8 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return $categories;
+        $categories = Category::orderBy('type','asc')->get();
+        return response()->json(['data'=>$categories],200);
     }
 
     /**
@@ -24,6 +24,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $category=Category::create($request->all());
+        return response()->json(['data'=>$category],200);
+
     }
 
     /**
@@ -32,14 +35,20 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+
+        return response()->json(['data'=>$category],200);
+
     }
 
     /**
      * Update the specified resource in storage.
      */
+    //request:datos json que se quieren modificar
     public function update(Request $request, Category $category)
     {
         //
+        $category->update($request->all());
+        return response()->json(['data'=>$category],200);
     }
 
     /**
@@ -48,5 +57,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $category->delete();
+        return response()->json(null,204);
+
     }
 }

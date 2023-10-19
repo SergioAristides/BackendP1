@@ -14,9 +14,8 @@ class ComputerController extends Controller
 
 
     public function computersObservations(){
-        $computers = Computer::with('observation')->get();
+        $computers = Computer::orderBy('name','asc')->with('observations')->get();
         return response()->json(['data'=>$computers],200);
-
     }
     public function index()
     {

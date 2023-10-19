@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+
+    public function usersComputers(){
+        $users = User::orderBy('name','asc')->with('computers')->get();
+        return response()->json(['data'=>$users],200);
+
+    }
     /**
      * Display a listing of the resource.
      */
