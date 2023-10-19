@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -8,6 +9,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * crear tabla usuarios
+     *
      */
     public function up(): void
     {
@@ -18,12 +21,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            /*metodo laravel traducidos a sql este ultimo
+            genera dos campos uno create date <--> ultima vez de modificacion*/
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     * borrar la tabla
      */
     public function down(): void
     {
