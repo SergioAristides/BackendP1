@@ -11,6 +11,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function categoriesObservations(){
+        $category = Category::orderBy('type','asc')->with('observations')->get();
+        return response()->json(['data'=>$category],200);
+    }
     public function index()
     {
         //

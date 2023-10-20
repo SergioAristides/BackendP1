@@ -15,12 +15,15 @@ class CategorySeeder extends Seeder
         Category::unguard();
         Category::create([
             'type' => 'software instalation',
+
         ]);
         Category::create([
             'type' => 'preventive maintenance',
+
         ]);
         Category::create([
             'type' => 'corrective maintenance',
+
         ]);
         Category::create([
             'type' => 'hardware change',
