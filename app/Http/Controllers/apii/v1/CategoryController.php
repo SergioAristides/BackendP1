@@ -8,12 +8,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function categoriesObservations(){
+        $categories = Category::orderBy('type','asc')->with('observations')->get();
+        return response()->json(['data'=>$categories],200);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+      
         $categories = Category::orderBy('type','asc')->get();
         return response()->json(['data'=>$categories],200);
     }

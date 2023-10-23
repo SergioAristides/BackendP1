@@ -15,6 +15,11 @@ class UserController extends Controller
         return response()->json(['data'=>$users],200);
 
     }
+
+    public function userObservation(){
+        $users = User::orderBy('name','asc')->with('observations')->get();
+        return response()->json(['data'=>$users],200);
+    }
     /**
      * Display a listing of the resource.
      */
