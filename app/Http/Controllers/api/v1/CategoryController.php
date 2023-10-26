@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function categoriesObservations(){
         $category = Category::orderBy('type','asc')->with('observations')->get();
-        return response()->json(['data'=>$category],200);
+        return response()->json(['data'=>CategoryResource::collection($category)],200);
     }
     public function index()
     {
