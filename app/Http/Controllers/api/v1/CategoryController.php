@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\v1\CategoryStoreRequest;
+use App\Http\Requests\api\v1\CategoryUpdateRequest;
+use App\Http\Resources\api\v1\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Request;
-
 class CategoryController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         //
         $category=Category::create($request->all());
@@ -41,7 +42,7 @@ class CategoryController extends Controller
     {
         //
 
-        return response()->json(['data'=>$category],200);
+        return response()->json(['data'=>new CategoryResource($category)],200);
 
     }
 
@@ -49,7 +50,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      */
     //request:datos json que se quieren modificar
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         //
         $category->update($request->all());
