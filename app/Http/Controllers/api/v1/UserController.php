@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\apii\v1;
-
+namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\v1\UserStoreRequest;
+use App\Http\Resources\api\v1\UserShowResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\api\v1\UserStoreRequest;
@@ -11,15 +12,46 @@ class UserController extends Controller
 {
 
 
-    public function usersComputers(){
+
+    public function usersComputers(String $id){
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        // Cargar los computadores relacionados
+        $user->load('computers');
+
+        return response()->json(['data' => $user], 200);
+    }
+
+    public function usersComputersAll(){
         $users = User::orderBy('name','asc')->with('computers')->get();
         return response()->json(['data'=>$users],200);
 
     }
 
+<<<<<<< HEAD:app/Http/Controllers/apii/v1/UserController.php
     public function userObservation(){
         $users = User::orderBy('name','asc')->with('observations')->get();
         return response()->json(['data'=>$users],200);
+=======
+    public function usersObservationsAll(){
+        $users = User::orderBy('name','asc')->with('observations')->get();
+         return response()->json(['data'=>$users],200);
+    }
+
+    public function userObservations(string $id){
+        $user=User::find($id);
+        if(!$user){
+            return response()->json(['message'=>'usuario no encontrado'],404);
+        }
+
+        $user->load('observations');
+        return response()->json(['data'=>$user],200);
+
+>>>>>>> 3d38963f0d45aee94e8a94142822b5b3d43ec1b7:app/Http/Controllers/api/v1/UserController.php
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +60,11 @@ class UserController extends Controller
     {
         //
         $users = User::orderBy('name','asc')->get();
+<<<<<<< HEAD:app/Http/Controllers/apii/v1/UserController.php
         return response()->json(['data'=>UserResource::collection($users)],200);
+=======
+        return response()->json(['data'=>UserShowResource::collection($users)],200);
+>>>>>>> 3d38963f0d45aee94e8a94142822b5b3d43ec1b7:app/Http/Controllers/api/v1/UserController.php
     }
 
     /**
@@ -48,7 +84,12 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+<<<<<<< HEAD:app/Http/Controllers/apii/v1/UserController.php
         return response()->json(['data'=>new UserResource($user)],200);
+=======
+
+        return response()->json(['data'=>new UserShowResource($user)],200);
+>>>>>>> 3d38963f0d45aee94e8a94142822b5b3d43ec1b7:app/Http/Controllers/api/v1/UserController.php
 
     }
 

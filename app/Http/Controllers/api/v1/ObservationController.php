@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\apii\v1;
+namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Observation;
@@ -11,6 +11,7 @@ class ObservationController extends Controller
     /**
      * Display a listing of the resource.
      */
+
 
      public function index()
     {

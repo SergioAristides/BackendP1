@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\apii\v1;
+namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -16,6 +16,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function categoriesObservations(){
+        $category = Category::orderBy('type','asc')->with('observations')->get();
+        return response()->json(['data'=>$category],200);
+    }
     public function index()
     {
       
