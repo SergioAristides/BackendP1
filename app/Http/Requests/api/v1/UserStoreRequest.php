@@ -22,10 +22,12 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             //admitir que el nombre tenga tildes
             'name' => 'required|string|max:255|min:7|alpha:ascii',
             'email' => 'required|email|min:8|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:255',
+
         ];
     }
 

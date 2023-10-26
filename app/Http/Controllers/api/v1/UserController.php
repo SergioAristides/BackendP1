@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\v1\UserStoreRequest;
+use App\Http\Requests\api\v1\UserUpdateRequest;
 use App\Http\Resources\api\v1\UserShowResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -82,7 +83,8 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     //request:datos json que se quieren modificar
-    public function update(Request $request, User $user)
+
+    public function update(UserUpdateRequest $request, User $user)
     {
         //
         $user->update($request->all());
