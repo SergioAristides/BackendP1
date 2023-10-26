@@ -20,6 +20,6 @@ class ComputerResource extends JsonResource
             'brand'=>$this->brand,
             'ram'=>$this->ram,
             'cpu'=>$this->cpu,
-        ]
+        ];
     }
 }

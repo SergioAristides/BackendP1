@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use App\Models\Observation;
-use Illuminate\Http\Request;
+
 use App\Http\Requests\api\v1\ComputerStoreRequest;
 use App\Http\Requests\api\v1\ComputerUpdateRequest;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class ComputerController extends Controller
     {
         //
         $computers = Computer::orderBy('id','asc')->get();
-        return response()->json(['data'=>ComputerShowResource::collection($computers)],200);
+        return response()->json(['data'=>ComputerResource::collection($computers)],200);
     }
 
     /**
@@ -44,7 +44,7 @@ class ComputerController extends Controller
     {
         //
 
-        return response()->json(['data'=>new ComputerShowResource($computer)],200);
+        return response()->json(['data'=>new ComputerResource($computer)],200);
 
     }
 

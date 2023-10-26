@@ -21,7 +21,7 @@ class ObservationController extends Controller
     {
         //
         $observation = Observation::orderBy('id','asc')->get();
-        return response()->json(['data'=>ObservationShowResource::collection($observation)],200);
+        return response()->json(['data'=>ObservationResource::collection($observation)],200);
     }
 
     /**
@@ -42,7 +42,7 @@ class ObservationController extends Controller
     {
         //
 
-        return response()->json(['data'=>ObservationShowResource($observation)],200);
+        return response()->json(['data'=>ObservationResource($observation)],200);
 
     }
 

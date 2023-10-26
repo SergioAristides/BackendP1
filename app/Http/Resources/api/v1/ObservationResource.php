@@ -19,7 +19,7 @@ class ObservationResource extends JsonResource
             'message' => $this->message,
             'owner'=>$this->user_id,
             'computer'=>$this->computer_id,
-            'creation_date'=>$this->updated_at,
-        ]
+            'creation_date'=>$this->updated_at
+        ];
     }
 }
