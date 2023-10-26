@@ -5,8 +5,11 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use App\Models\Observation;
-use Illuminate\Http\Request;
 
+use App\Http\Requests\api\v1\ComputerStoreRequest;
+use App\Http\Requests\api\v1\ComputerUpdateRequest;
+use Illuminate\Http\Request;
+use App\Http\Resources\api\v1\ComputerResource;
 
 
 class ComputerController extends Controller
@@ -21,13 +24,13 @@ class ComputerController extends Controller
     {
         //
         $computers = Computer::orderBy('id','asc')->get();
-        return response()->json(['data'=>$computers],200);
+        return response()->json(['data'=>ComputerResource::collection($computers)],200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ComputerStoreRequest $request)
     {
         $computer=Computer::create($request->all());
         return response()->json(['data'=>$computer],200);
@@ -41,7 +44,7 @@ class ComputerController extends Controller
     {
         //
 
-        return response()->json(['data'=>$computer],200);
+        return response()->json(['data'=>new ComputerResource($computer)],200);
 
     }
 
@@ -49,7 +52,7 @@ class ComputerController extends Controller
      * Update the specified resource in storage.
      */
     //request:datos json que se quieren modificar
-    public function update(Request $request, Computer $computer)
+    public function update(ComputerUpdateRequest $request, Computer $computer)
     {
         //
         $computer->update($request->all());

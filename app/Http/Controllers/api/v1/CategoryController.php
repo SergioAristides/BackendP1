@@ -9,6 +9,11 @@ use App\Http\Resources\api\v1\CategoryResource;
 use App\Models\Category;
 class CategoryController extends Controller
 {
+
+    public function categoriesObservations(){
+        $categories = Category::orderBy('type','asc')->with('observations')->get();
+        return response()->json(['data'=>$categories],200);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -19,7 +24,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        //
+      
         $categories = Category::orderBy('type','asc')->get();
         return response()->json(['data'=>$categories],200);
     }

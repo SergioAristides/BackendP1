@@ -7,7 +7,7 @@ use App\Http\Requests\api\v1\UserUpdateRequest;
 use App\Http\Resources\api\v1\UserShowResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\api\v1\UserResource;
 class UserController extends Controller
 {
 
@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         //
         $user=User::create($request->all());
-        return response()->json(['data'=>$user],200);
+        return response()->json(['data'=>$user],201);
 
     }
 

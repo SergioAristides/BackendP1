@@ -18,6 +18,7 @@ class Computer extends Model
         'brand',
         'ram',
         'cpu',
+        'owner'
     ];
     public function user():BelongsTo{
         return $this->belongsTo(Computer::class,'owner');

@@ -12,7 +12,10 @@ class Observation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'mesage',
+        'message',
+        'category',
+        'owner',
+        'computer',
     ];
 
     public function category():BelongsTo{
